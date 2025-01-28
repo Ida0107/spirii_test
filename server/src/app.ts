@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import {config} from 'dotenv';
 import {router as dragonsRouter} from './dragons/router';
 import { appBootstrap } from './appBootstrap';
+import cors from 'cors';
 
 async function main() {
     config();
@@ -14,6 +15,13 @@ async function main() {
     const {
         dragons
     } = appBootstrap();
+
+    const corsOptions = {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200
+    };
+
+    app.use(cors(corsOptions));
 
     app.use('/dragons', dragonsRouter(dragons));
 
