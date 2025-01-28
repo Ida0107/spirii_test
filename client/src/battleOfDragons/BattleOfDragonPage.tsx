@@ -13,7 +13,7 @@ export function BattleOfDragonPage({dragons}: BattleOfDragonPageProps) {
     const [dragonOneId, setDragonOneId] = useState<string | null>(null);
     const [dragonTwoId, setDragonTwoId] = useState<string | null>(null);
 
-    const {strengthDragonOne, strengthDragonTwo, handleFightBattleClick} = useFightDragons();
+    const {strengthDragonOne, strengthDragonTwo, handleFightBattleClick, ended} = useFightDragons();
 
     const selectedDragonOne = useMemo(() => {
         return dragonOneId ? getDragonByDragonId(dragons, dragonOneId) : null;
@@ -41,7 +41,7 @@ export function BattleOfDragonPage({dragons}: BattleOfDragonPageProps) {
                     variant='contained'
                     color='secondary'
                     sx={{height: 40}}
-                    disabled={!!isSamePlayers}
+                    disabled={!!isSamePlayers || ended}
                     onClick={() => handleFightBattleClick({dragonOneId, dragonTwoId})}
                 >
                     Fight
@@ -56,6 +56,12 @@ export function BattleOfDragonPage({dragons}: BattleOfDragonPageProps) {
             </Box>
         </Box>
         {isSamePlayers && <Alert sx={{mt: 4}} severity='error'>Choose a different second player</Alert>}
+        {ended && <Alert 
+                sx={{mt: 4}}
+                severity='success'
+            >
+                {`Winner is ${strengthDragonOne > strengthDragonTwo ? selectedDragonOne?.name : selectedDragonTwo?.name }`}
+            </Alert>}
     </Box>
 }
 

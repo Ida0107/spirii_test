@@ -11,7 +11,11 @@ export function DragonProfile({selectedDragon, strength}: DragonProfileProps) {
     const dragonAttributes: Record<string, string | number> = useMemo(() => {
         const {name, type, size, health} = selectedDragon;
         return {
-            name, health, strength, type, size,
+            name,
+            health,
+            strength,
+            type,
+            size,
         }
     }, [selectedDragon, strength]);
 

@@ -36,15 +36,15 @@ export const dragonData: IDragon[] = [
     },
     {
         id: '61a5eb358dde810012dc9b75',
-        name: 'Leo',
-        size: 300,
+        name: 'Kat',
+        size: 30,
         health: 100,
         type: EDragonType.GIRAFFE,
         createdAt: new Date('2021-08-19T19:41:35.982Z')
     },
     {
         id: '61a5eb358dde810012dc9b55',
-        name: 'Lola',
+        name: 'Nina',
         size: 145,
         health: 100,
         type: EDragonType.KOALA,
