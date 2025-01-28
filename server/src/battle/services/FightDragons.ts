@@ -10,6 +10,11 @@ export class FightDragons implements IFightDragons {
 
     constructor() {
         this.playerDragons = initPlayerDragons(dragonData);
+        /*
+            Ideally this service will receive a command to find the player dragons from dragons table and
+            create an entry in the battle table to mark the winner of each battle
+            A battle will have relation one to many relation with battle rounds table
+        */
     }
 
     async fight(dragonOneId, dragonTwoId): Promise<IFightResponse> {
@@ -26,7 +31,7 @@ export class FightDragons implements IFightDragons {
         const dragonTwoRemainingStrength = dragonTwo.strength - dragonTwoHealthLoss;
 
         this.updatePlayerDragon(dragonOneId, dragonOneRemainingStrength);
-        this.updatePlayerDragon(dragonTwoId, dragonOneRemainingStrength);
+        this.updatePlayerDragon(dragonTwoId, dragonTwoRemainingStrength);
 
         return {
             ended: dragonOneRemainingStrength <= 0 || dragonTwoRemainingStrength <= 0,
