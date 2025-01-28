@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {config} from 'dotenv';
 import {router as dragonsRouter} from './dragons/router';
+import {router as battleRouter} from './battle/router';
 import { appBootstrap } from './appBootstrap';
 import cors from 'cors';
 
@@ -13,7 +14,8 @@ async function main() {
     app.use(express.json());
 
     const {
-        dragons
+        dragons,
+        battle
     } = appBootstrap();
 
     const corsOptions = {
@@ -24,6 +26,8 @@ async function main() {
     app.use(cors(corsOptions));
 
     app.use('/dragons', dragonsRouter(dragons));
+
+    app.use('/battle', battleRouter(battle));
 
     const PORT = process.env.PORT || 5000;
 
